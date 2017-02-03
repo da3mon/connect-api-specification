@@ -47,10 +47,6 @@ module {{moduleName}}{{#models}}{{#model}}{{#description}}
 {{#vars}}{{#isEnum}}
     # Custom attribute writer method checking allowed values (enum).
     def {{{name}}}=({{{name}}})
-      allowed_values = [{{#allowableValues}}{{#values}}"{{{this}}}"{{^-last}}, {{/-last}}{{/values}}{{/allowableValues}}]
-      if {{{name}}} && !allowed_values.include?({{{name}}})
-        fail "invalid value for '{{{name}}}', must be one of #{allowed_values}"
-      end
       @{{{name}}} = {{{name}}}
     end
 {{/isEnum}}{{/vars}}

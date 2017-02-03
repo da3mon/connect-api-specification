@@ -37,7 +37,7 @@ module {{moduleName}}
       end
       {{#allParams}}{{#required}}
       # verify the required parameter '{{paramName}}' is set
-      fail "Missing the required parameter '{{paramName}}' when calling {{operationId}}" if {{{paramName}}}.nil?{{#isEnum}}
+      raise ArgumentError.new("Missing the required parameter '{{paramName}}' when calling {{operationId}}") if {{{paramName}}}.nil?{{#isEnum}}
       unless [{{#allowableValues}}{{#values}}'{{{this}}}'{{^-last}}, {{/-last}}{{/values}}{{/allowableValues}}].include?({{{paramName}}})
         fail "invalid value for '{{{paramName}}}', must be one of {{#allowableValues}}{{#values}}{{{this}}}{{^-last}}, {{/-last}}{{/values}}{{/allowableValues}}"
       end{{/isEnum}}
